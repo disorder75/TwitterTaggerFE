@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Feedback, ContactType } from '../shared/feedback';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -71,6 +71,7 @@ export class ContactComponent implements OnInit {
     if(!this.feedbackForm) { 
       return;
     }
+
     const form = this.feedbackForm;
     for (const field in this.formErrors) { 
       if (this.formErrors.hasOwnProperty(field)) {

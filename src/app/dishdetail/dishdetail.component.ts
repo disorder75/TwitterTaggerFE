@@ -7,11 +7,19 @@ import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Comments } from '../shared/comments';
 import { NgForm } from '@angular/forms';
+import { expand, flyInOut } from '../animations/app.animation';
 
 @Component({
     selector: 'app-dishdetail',
     templateUrl: './dishdetail.component.html',
-    styleUrls: ['./dishdetail.component.scss']
+    styleUrls: ['./dishdetail.component.scss'],
+    host: {
+      '[@flyInOut]': 'true',
+      'style': 'display: block;'
+    },
+    animations: [
+      flyInOut(), expand()
+    ]
 })
 export class DishdetailComponent implements OnInit {
 
@@ -27,6 +35,7 @@ export class DishdetailComponent implements OnInit {
     errMess!: string;
     dishcopy!: Dish;
 
+  
     formErrors = {
         'author': '',
         'comment': '',
@@ -54,8 +63,11 @@ export class DishdetailComponent implements OnInit {
 
     ngOnInit(): void { 
         this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds, errmess => this.errMess = errmess);
-        this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-                         .subscribe(dish => {this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id)}, errmess => this.errMess = errmess);
+        this.route.params.pipe(switchMap((params: Params) => {return this.dishservice.getDish(params['id']);}))
+                         .subscribe(dish => { this.dish = dish; 
+                                              this.dishcopy = dish; 
+                                              this.setPrevNext(dish.id); 
+                                            }, errmess => this.errMess = <any>errmess);                         
     }
 
     goBack(): void {

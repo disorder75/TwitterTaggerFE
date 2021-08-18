@@ -22,35 +22,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import 'hammerjs';
-import { MenuComponent } from './menu/menu.component';
-import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
-import { DishService } from './services/dish.service';
-import { PromotionService } from './services/promotion.service';
-import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
-
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { AboutComponent } from './about/about.component';
+import { TrainComponent } from './train/train.component';
 import { HomeComponent } from './home/home.component';
-import { ContactComponent } from './contact/contact.component';
+import { StatsComponent } from './stats/stats.component';
 import { LoginComponent } from './login/login.component';
+import { environment } from '../environments/environment';
 
-import { baseURL } from './shared/baseurl';
 import { HighlightDirective } from './directives/highlight.directive';
+import { AuthenticationService } from './services/authentication.service';
+import { TwitterService } from './services/twitter.service';
+import { httpInterceptorProviders } from './services/http-interceptors';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    DishdetailComponent,
     HeaderComponent,
     FooterComponent,
-    AboutComponent,
+    TrainComponent,
     HomeComponent,
-    ContactComponent,
+    StatsComponent,
     LoginComponent,
     HighlightDirective
   ],
@@ -74,14 +71,15 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
-    DishService, 
-    PromotionService,
-    LeaderService,
     ProcessHTTPMsgService,
-    { provide: 'BaseURL', useValue: baseURL }
+    AuthenticationService,
+    TwitterService,
+    httpInterceptorProviders,
+    { provide: 'BaseURL', useValue: environment.webAppRootUrl }
   ],
   entryComponents:[
     LoginComponent

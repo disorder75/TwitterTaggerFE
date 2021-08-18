@@ -1,7 +1,9 @@
+@import "../../styles.scss";
+
 $lt-gray: #ddd;
-$background-dark: #512da8;
-$background-light: #9575cd;
-$background-pale: #d1c4e9;
+$background-dark: #56423e;
+$background-light: #b3867d;
+$background-pale: #b3867d;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
   margin: 0px auto;
@@ -9,13 +11,21 @@ $background-pale: #d1c4e9;
 }
 
 .footer {
-  background-color: $background-pale;
+  background-color: $natural-palette-backgroud-dark;
   @include zero-margin(20px, 0px);
 }
 
+.btn-wiki {
+  color: #fff !important;
+  background-color: #000000 !important;
+}
 .btn-facebook {
   color: #fff !important;
   background-color: #3b5998 !important;
+}
+.btn-university {
+  color: #fff !important;
+  background-color: #3671f1 !important;
 }
 .btn-google-plus {
   color: #fff !important;
@@ -36,4 +46,9 @@ $background-pale: #d1c4e9;
 .btn-mail {
   color: #fff !important;
   background-color: #512da8 !important;
+}
+.text-copyright {
+  color: rgb(0, 0, 0) !important;
+  display: flex;
+  justify-content: center;
 }

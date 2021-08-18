@@ -1,8 +1,17 @@
+@import "../../styles.scss";
+
 $lt-gray: #ddd;
 $background-dark: #512da8;
-$background-light: #9575cd;
+$background-light: #bea6a1;
 $background-pale: #d1c4e9;
-$background-moredark: #4527a0;
+$background-moredark: #bb8378;
+
+$logo-border: #fae955;
+
+.header {
+  background-color: $natural-palette-backgroud-light;
+  @include zero-margin(20px, 0px);
+}
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
   margin: 0px auto;
@@ -10,12 +19,30 @@ $background-moredark: #4527a0;
 }
 
 .jumbotron {
-  @include zero-margin(70px, 30px);
-  background: $background-light;
-  color: floralwhite;
-  min-height: 150px;
+  @include zero-margin(30px, 30px);
+  background: $natural-palette-backgroud-light;
 }
 
 .active {
-  background: $background-moredark;
+  background: $matching-gradient-link-active;
+}
+
+.logo {
+  background: $natural-palette-backgroud-light;
+  height: 0px;
+  margin-top: 50px;
+  text-align: center;
+}
+.logo:before {
+  content: "";
+  display: inline-block;
+  vertical-align: top;
+  width: 100px;
+  height: 100px;
+  background: $natural-palette-logo-red url("/assets/images/logo.png") center /
+    cover;
+  border: 8px solid $natural-palette-logo-border;
+  border-radius: 100%;
+  box-sizing: border-box;
+  margin-top: -50px;
 }

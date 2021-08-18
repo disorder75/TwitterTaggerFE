@@ -1,0 +1,24 @@
+@import "../../styles.scss";
+
+.train-card {
+  margin: 1px;
+  text-align: center;
+  justify-content: center;
+  max-width: 400px;
+}
+
+.train-header-image {
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.train-card-tweet {
+  margin: 1px;
+  width: auto;
+  border-style: solid;
+}
+
+.images-small {
+  border-radius: 50%;
+  width: 50px;
+}

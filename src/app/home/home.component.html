@@ -3,69 +3,84 @@
      fxLayout.sm="column"
      fxLayout.xs="column"
      fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="10px">
+     fxLayoutGap="5px">
 
-<mat-card *ngIf="dish" fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>{{dish.name | uppercase}}</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{ baseURL + dish.image }}" alt={{dish.name}}>
-  <mat-card-content>
-    <p>{{dish.description}}
-    </p>
-  </mat-card-content>
-</mat-card>
-
-<div [hidden]="dish || dishErrMess">
-  <mat-spinner></mat-spinner>
-  <h4>Loading...please wait</h4>
+  <mat-card class="warning-not-logged" *ngIf="!loggedUser">
+    <!-- <mat-card-header>
+      <mat-card-title>You're not logged</mat-card-title>
+    </mat-card-header> -->
+    <img mat-card-image class="images" src="../../assets/images/notLogged.png" alt="Not logged">
+    <mat-card-content>
+      <p>
+        You're not logged-in on the tweeter gateway.
+        <br> 
+        Please perform a login with your username and bearer authentication token.
+        <br>
+        If you don't have a bearer token please check
+        <br>
+        <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens"> twitter bearer</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
 </div>
 
-<div fxFlex *ngIf="dishErrMess">
-  <h2>Error</h2>
-  <h4>{{dishErrMess}}</h4>
-</div>
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="5px">
 
-<mat-card *ngIf="promotion" fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>{{promotion.name | uppercase}}</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src={{promotion.image}} alt={{promotion.name}}>
-  <mat-card-content>
-    <p>{{promotion.description}}
-    </p>
-  </mat-card-content>
-</mat-card>
+   <!--     DISPLAY TWEET 01 FETCHED DATA  -->
+   <mat-card *ngIf="tweet" class="card-tweet">
+    <img mat-card-image class="images" src="{{randomImage}}" alt="predicted tweet">
+    <mat-card-content class="card-tweet-content">
+      <img class="avatar" src="{{tweet.includes.users[0].profile_image_url}}">
+      <p>{{tweet.includes.users[0].username}} is talking about <br><b><em>{{tweet.prediction}}</em></b></p>
+      <p>{{tweet.data.text}}</p>
+    </mat-card-content>
+  </mat-card>
+  
+  <div *ngIf="loggedUser">
+    <div [hidden]="tweet || errorMessage">
+      <mat-spinner></mat-spinner>
+      <h4>Loading next tweet...please wait</h4>
+      <p *ngIf="errorMessage">{{errorMessage}}</p>
+    </div>
+  </div>
 
-<div [hidden]="promotion">
-  <mat-spinner></mat-spinner>
-  <h4>Loading...please wait</h4>
-</div>
+  <!--     DISPLAY TWEET 02 FETCHED DATA  -->
+  <mat-card *ngIf="tweet02" class="card-tweet">
+    <img mat-card-image class="images" src="{{randomImage02}}" alt="predicted tweet">
+    <mat-card-content class="card-tweet-content">
+      <img class="avatar" src="{{tweet02.includes.users[0].profile_image_url}}">
+      <p>{{tweet02.includes.users[0].username}} is talking about <br><b><em>{{tweet02.prediction}}</em></b></p>
+      <p>{{tweet02.data.text}}</p>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card *ngIf="leaderInCharge" fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>{{leaderInCharge.name | uppercase}}</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src={{leaderInCharge.image}} alt={{leaderInCharge.name}}>
-  <mat-card-content>
-    <p>{{leaderInCharge.description}}
-    </p>
-  </mat-card-content>
-</mat-card>
-
-<div [hidden]="leaderInCharge">
-  <mat-spinner></mat-spinner>
-  <h4>Loading...please wait</h4>
-</div>
+  <div *ngIf="loggedUser">
+    <div [hidden]="tweet02 || errorMessage">
+      <mat-spinner></mat-spinner>
+      <h4>Loading next tweet...please wait</h4>
+      <p *ngIf="errorMessage">{{errorMessage}}</p>
+    </div>
+  </div>
+  
+  <!--     DISPLAY USER LOGGED-IN FETCHED DATA  -->
+  <mat-card *ngIf="loggedUser" class="card">
+    <!-- <div mat-card-avatar style="background-image: url('{{loggedUser.data.profile_image_url}}');"></div>
+    <mat-card-title>{{loggedUser.data.username}}</mat-card-title> -->
+    <img mat-card-image class="images" src="../../assets/images/Logged.png" alt="logged">
+    <mat-card-content>
+      <img class="avatar" src="{{loggedUser.data.profile_image_url}}">
+      <p>User: {{loggedUser.data.name}} <br> aka {{loggedUser.data.username}}</p>
+      <p *ngIf="loggedUser.data.id"> Id: {{loggedUser.data.id}}</p>
+      <p> Description: {{loggedUser.data.description}}</p>
+      <p *ngIf="loggedUser.data.created_at"> since on {{loggedUser.data.created_at | date: 'dd/MM/yyyy'}}</p>
+      <a href="{{loggedUser.data.url}}" *ngIf="loggedUser.data.url">Show on Twitter</a>
+    </mat-card-content>
+  </mat-card>
 
 
 </div>

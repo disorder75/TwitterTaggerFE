@@ -5,18 +5,6 @@
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 
-// some basic resets
-body {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto, sans-serif;
-}
-
-.container {
-  margin: 20px;
-  display: flex;
-}
-
 $lt-gray: #ddd;
 $background-dark: #512da8;
 $background-light: #9575cd;
@@ -29,6 +17,28 @@ $accent-color: #ffc107;
 $primary-text-color: #212121;
 $secondary-text-color: #757575;
 $divider-color: #bdbdbd;
+
+$matching-gradient-link-active: #fdbac9;
+$natural-palette-backgroud-light: #ffc1ac;
+$natural-palette-backgroud-dark: #b3b3b3;
+$natural-palette-backgroud-text: #ffd785;
+$natural-palette-logo-border: #ffd785;
+$natural-palette-warning: #fffd98;
+$natural-palette-loggedin: #e5fdbe;
+$natural-palette-logo-red: #d0b9cc;
+
+// some basic resets
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  margin: 1px;
+  display: flex;
+  background-color: $natural-palette-backgroud-text;
+}
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
   margin: 0px auto;
@@ -47,4 +57,59 @@ $divider-color: #bdbdbd;
 
 .flex-spacer {
   flex: 1 1 auto;
+}
+
+.highlight {
+  background-color: $background-pale;
+  border: 1px solid $primary-color-dark;
+  z-index: 1;
+  transform: scale(1.01);
+}
+
+.images {
+  border-radius: 50%;
+  width: 100px;
+}
+
+.avatar {
+  border-radius: 50%;
+  float: left;
+}
+
+.warning-not-logged {
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border-radius: 15%;
+  margin: 1px;
+}
+
+.card {
+  text-align: center;
+  justify-content: center;
+  margin: 1px;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border-radius: 15%;
+  float: left;
+}
+
+.card-tweet {
+  text-align: center;
+  justify-content: center;
+  margin: 1px;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border-radius: 15%;
+  float: left;
+}
+
+.card-tweet-content {
+  text-align: left;
+  justify-content: center;
+  float: left;
 }

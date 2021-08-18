@@ -1,15 +1,15 @@
-<mat-toolbar color="primary">
-    <span><img src="/assets/images/logo.png" height=30 width=41></span>
-    <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
-    <a mat-button routerLink="/aboutus" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
-    <a mat-button routerLink="/menu" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Menu</a>
-    <a mat-button routerLink="/contactus" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+<mat-toolbar class="container header">
+    <div class="logo"></div>
+    <div fxFlex></div>
+    <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Pool Tweets</a>
+    <a mat-button routerLink="/train" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> Train tweets</a>
+    <a mat-button routerLink="/stats" routerLinkActive="active"><span class="fas fa-chart-line"></span> Stats</a>
     <span class="flex-spacer"></span>
     <a mat-button (click)="openLoginForm()">
       <span class="fas fa-sign-in-alt"></span>
       Login
     </a>
-  </mat-toolbar>
+</mat-toolbar>
   
   <div class="container jumbotron"
       fxLayout="row"
@@ -21,12 +21,8 @@
       fxLayoutGap="10px">
   
     <div fxFlex fxFlex.gt-sm="50%">
-      <h1>Ristorante Con Fusion</h1>
-      <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
-        will tickle your culinary senses!</p>
-    </div>
-    <div fxFlex fxFlex.gt-sm="20%">
-      <img src="/assets/images/logo.png" alt="Logo">
+      <h1>Twitter Naive Bayes Classifier</h1>
+      <p><i>tag your tweets!</i></p>
     </div>
     <div fxFlex></div>
   </div>

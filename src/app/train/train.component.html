@@ -1,0 +1,95 @@
+<div class="container"
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.xs="column"
+      fxLayoutAlign.gt-md="space-around center"
+      fxLayoutGap="5px">
+
+  <mat-card class="warning-not-logged" *ngIf="!loggedUser">
+    <img mat-card-image class="images" src="../../assets/images/notLogged02.png" alt="Not logged">
+    <mat-card-content>
+      <p>
+        You're not logged-in on the tweeter gateway.
+        <br> 
+        Please perform a login with your username and bearer authentication token.
+        <br>
+        If you don't have a bearer token please check
+        <br>
+        <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens"> twitter bearer</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="train-card" *ngIf="loggedUser">
+    <mat-card-header>
+      <div mat-card-avatar class="train-header-image">
+        <img class="train-header-image" src="{{loggedUser.data.profile_image_url}}" alt="{{loggedUser.data.name}}">
+      </div>
+      <mat-card-title>Retrieve your tweets from the gateway</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button (click)="getTweets()">TRAIN</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
+
+
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="5px">
+
+
+  <!--     DISPLAY TWEETS FETCHED DATA  -->
+  <div *ngIf="tweets">
+    <div *ngFor="let tweet of tweets">
+      <div *ngIf="tweet.visible">
+        <mat-card class="train-card-tweet">
+          <mat-card-header>
+            <mat-card-title>{{tweet.includes.users[0].username}} is twitting</mat-card-title>
+            <mat-card-subtitle *ngIf="tweet.includes.users[0].created_at">
+              on twitter since {{tweet.includes.users[0].created_at | date: 'dd/MM/yyyy'}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <img class="avatar" src="{{tweet.includes.users[0].profile_image_url}}">
+            <p>{{tweet.data.text}}</p>
+            <button mat-button (click)="train('POLITICS', tweet)">POLITICS</button>
+            <button mat-button (click)="train('ECONOMY', tweet)">ECONOMY</button>
+            <button mat-button (click)="train('WORK AND WELFARE', tweet)">WORK AND WELFARE</button>
+            <button mat-button (click)="train('TOURISM', tweet)">TOURISM</button>
+            <button mat-button (click)="train('INSTRUCTION', tweet)">INSTRUCTION</button>
+            <button mat-button (click)="train('HEALTH CARE', tweet)">HEALTH CARE</button>
+            <button mat-button (click)="train('SCIENCE', tweet)">SCIENCE</button>
+            <button mat-button (click)="train('SPORT', tweet)">SPORT</button>
+            <button mat-button (click)="train('PEOPLE', tweet)">PEOPLE</button>
+            <button mat-button (click)="train('ABROAD VOICES', tweet)">ABROAD VOICES</button>
+            <button mat-button (click)="train('UNKNOWN', tweet)">UNKNOWN</button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="loggedUser">
+    <div [hidden]="!isLoading || errorMessage">
+      <mat-spinner></mat-spinner>
+      <h4>Loading tweets...please wait</h4>
+      <p *ngIf="errorMessage">{{errorMessage}}</p>
+    </div>
+  </div>
+  
+
+</div>
+
+
+
+
+
+  
+  

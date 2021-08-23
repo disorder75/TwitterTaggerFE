@@ -11,7 +11,7 @@ export class StatsService {
     economy: 0,
     tourism: 0,
     instruction: 0,
-    healthCare: 0,
+    covid19: 0,
     science: 0,
     workAndWelfare: 0,
     sport: 0,

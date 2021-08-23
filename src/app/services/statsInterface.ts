@@ -6,7 +6,7 @@ export interface StatsInterface {
     economy: number;
     tourism: number;
     instruction: number;
-    healthCare: number;
+    covid19: number;
     science: number;
     workAndWelfare: number;
     sport: number;

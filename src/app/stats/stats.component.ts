@@ -25,7 +25,7 @@ export class StatsComponent implements OnInit {
     maintainAspectRatio: false,
   };
 
-  barChartLabels: Label[] = ['Politics', 'Economy', 'Welfare', 'Tourism', 'Instruction', 'Healthcare', 'Science', 'Spor', 'People', 'Abroad', 'Not classified topic'];
+  barChartLabels: Label[] = ['Politics', 'Economy', 'Welfare', 'Tourism', 'Instruction', 'Covid19', 'Science', 'Sport', 'People', 'Abroad', 'Not classified topic'];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];

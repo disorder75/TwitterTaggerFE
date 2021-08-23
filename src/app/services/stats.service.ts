@@ -40,8 +40,8 @@ export class StatsService {
       case 'instruction':
         this.temporaryStats.instruction++;
         break;
-      case 'health care':
-        this.temporaryStats.healthCare++;
+      case 'covid19':
+        this.temporaryStats.covid19++;
         break;
       case 'science':
         this.temporaryStats.science++;

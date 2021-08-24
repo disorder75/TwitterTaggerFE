@@ -5,6 +5,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { TwitterService } from '../services/twitter.service';
 import { LoggedUser } from '../shared/loggedUser';
 import { HomeComponent } from '../home/home.component';
+import { StatsService } from '../services/stats.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>, 
               private authenticationService: AuthenticationService,
-              private twitterService: TwitterService) { }
+              private twitterService: TwitterService,
+              private statsService: StatsService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
                                              this.authenticationService.getBearerToken()).subscribe(loggedUser => { 
       console.log("storing new logged user " + JSON.stringify(loggedUser));
       this.authenticationService.setLoggedUser(loggedUser);
+      this.statsService.resetStats();
     },
     errmess => { 
                   this.authenticationService.setLoggedUser(null);

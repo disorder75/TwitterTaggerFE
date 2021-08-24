@@ -78,5 +78,11 @@ export class StatsService {
     return foo;
   }
 
+  resetStats() { 
+    for (const property in this.temporaryStats) {
+      this.temporaryStats[property] = 0;
+    }
+  }
+
 
 }

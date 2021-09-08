@@ -9,14 +9,14 @@ export class StatsService {
   temporaryStats: StatsInterface = {
     politics: 0,
     economy: 0,
+    workAndWelfare: 0,
     tourism: 0,
     instruction: 0,
     covid19: 0,
     science: 0,
-    workAndWelfare: 0,
     sport: 0,
-    abroadVoices: 0,
     people: 0,
+    abroadVoices: 0,
     unknown: 0
   };
 

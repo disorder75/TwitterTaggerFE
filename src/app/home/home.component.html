@@ -63,7 +63,7 @@
   <mat-card *ngIf="tweet02" class="card-tweet">
     <mat-card-content class="card-tweet-content">
       <p>Best match <b><em>{{tweet02.prediction}}</em></b></p>
-      <li class="probabilities" *ngFor="let probability of tweet.arrayOfpredictionsWithProbabilities">
+      <li class="probabilities" *ngFor="let probability of tweet02.arrayOfpredictionsWithProbabilities">
         {{probability}}
       </li>
     </mat-card-content>

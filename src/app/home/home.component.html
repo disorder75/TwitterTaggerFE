@@ -1,9 +1,5 @@
-<div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="5px">
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="5px">
 
   <mat-card class="warning-not-logged" *ngIf="!loggedUser">
     <!-- <mat-card-header>
@@ -13,7 +9,7 @@
     <mat-card-content>
       <p>
         You're not logged-in on the tweeter gateway.
-        <br> 
+        <br>
         Please perform a login with your username and bearer authentication token.
         <br>
         If you don't have a bearer token please check
@@ -24,15 +20,11 @@
   </mat-card>
 </div>
 
-<div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="5px">
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="5px">
 
-   <!--     DISPLAY TWEET 01 FETCHED DATA  -->
-   <mat-card *ngIf="tweet" class="card-tweet">
+  <!--     DISPLAY TWEET 01 FETCHED DATA  -->
+  <mat-card *ngIf="tweet" class="card-tweet">
     <img mat-card-image class="images" src="{{randomImage}}" alt="predicted tweet">
     <mat-card-content class="card-tweet-content">
       <img class="avatar" src="{{tweet.includes.users[0].profile_image_url}}">
@@ -40,7 +32,16 @@
       <p>{{tweet.data.text}}</p>
     </mat-card-content>
   </mat-card>
-  
+
+  <mat-card *ngIf="tweet" class="card-tweet">
+    <mat-card-content class="card-tweet-content">
+      <p>Best match <b><em>{{tweet.prediction}}</em></b></p>
+      <li class="probabilities" *ngFor="let probability of tweet.arrayOfpredictionsWithProbabilities">
+        {{probability}}
+      </li>
+    </mat-card-content>
+  </mat-card>
+
   <div *ngIf="loggedUser">
     <div [hidden]="tweet || errorMessage">
       <mat-spinner></mat-spinner>
@@ -59,6 +60,15 @@
     </mat-card-content>
   </mat-card>
 
+  <mat-card *ngIf="tweet02" class="card-tweet">
+    <mat-card-content class="card-tweet-content">
+      <p>Best match <b><em>{{tweet02.prediction}}</em></b></p>
+      <li class="probabilities" *ngFor="let probability of tweet.arrayOfpredictionsWithProbabilities">
+        {{probability}}
+      </li>
+    </mat-card-content>
+  </mat-card>
+
   <div *ngIf="loggedUser">
     <div [hidden]="tweet02 || errorMessage">
       <mat-spinner></mat-spinner>
@@ -66,7 +76,7 @@
       <p *ngIf="errorMessage">{{errorMessage}}</p>
     </div>
   </div>
-  
+
   <!--     DISPLAY USER LOGGED-IN FETCHED DATA  -->
   <mat-card *ngIf="loggedUser" class="card">
     <!-- <div mat-card-avatar style="background-image: url('{{loggedUser.data.profile_image_url}}');"></div>

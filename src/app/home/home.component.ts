@@ -65,10 +65,12 @@ export class HomeComponent implements OnInit {
     console.log("registering polling tweets");
     if (this.timeInterval)
       this.timeInterval.unsubscribe();
-    this.timeInterval = interval(10000).pipe(startWith(0), switchMap(()=> this.twitterService.getTweetWithPrediction()),)
+    this.timeInterval = interval(15000).pipe(startWith(0), switchMap(()=> this.twitterService.getTweetWithPrediction()),)
                                         .subscribe(tweet => { 
                                                               if (tweet) {
                                                                 this.tweet = tweet; 
+                                                                this.tweet.arrayOfpredictionsWithProbabilities = this.tweet.predictionsWithProbabilities.split("  ");
+                                                                console.log(this.tweet.arrayOfpredictionsWithProbabilities);
                                                                 this.randomImage = "../../assets/images/tweet" + this.getRandomArbitrary(1,17) + ".png";
                                                                 if (this.tweet.prediction)
                                                                   this.statsService.update(this.tweet.prediction);
@@ -76,8 +78,16 @@ export class HomeComponent implements OnInit {
                                                             }, err => this.errorMessage = err);
     if (this.timeInterval02)
       this.timeInterval02.unsubscribe();
-    this.timeInterval02 = interval(11000).pipe(startWith(0), switchMap(()=> this.twitterService.getTweetWithPrediction()),)
-                                        .subscribe(tweet => {this.tweet02 = tweet; this.randomImage02 = "../../assets/images/tweet" + this.getRandomArbitrary(1,17) + ".png";}, err => this.errorMessage = err);
+    this.timeInterval02 = interval(18500).pipe(startWith(0), switchMap(()=> this.twitterService.getTweetWithPrediction()),)
+                                        .subscribe(tweet => {
+                                                             if(tweet){
+                                                              this.tweet02 = tweet; 
+                                                              this.tweet02.arrayOfpredictionsWithProbabilities = this.tweet02.predictionsWithProbabilities.split("  ");
+                                                              this.randomImage02 = "../../assets/images/tweet" + this.getRandomArbitrary(1,17) + ".png";
+                                                              if (this.tweet.prediction)
+                                                                this.statsService.update(this.tweet.prediction);
+                                                             }
+                                                            }, err => this.errorMessage = err);
   }
 
   /**

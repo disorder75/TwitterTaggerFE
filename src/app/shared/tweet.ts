@@ -33,4 +33,6 @@ export class Tweet {
      ];
      visible:boolean;
      prediction:string;
+     predictionsWithProbabilities:string;
+     arrayOfpredictionsWithProbabilities:string[];
 }
